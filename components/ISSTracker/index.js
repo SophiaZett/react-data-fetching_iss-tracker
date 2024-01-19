@@ -31,11 +31,7 @@ export default function ISSTracker() {
     mutate: refresh,
   } = useSWR(URL, fetcher, { refreshInterval: 2000 });
 
-  if (error) {
-    // Überprüfen, ob das Fehlerobjekt zusätzliche Informationen enthält
-    const errorMessage = error.info?.message || "failed to load";
-    return <p>Error: {errorMessage}</p>;
-  }
+  if (error) return <p>failed to load</p>;
   if (isLoading) return <p>loading...</p>;
 
   return (
